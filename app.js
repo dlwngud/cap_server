@@ -17,6 +17,13 @@ app.get('/', function(req, res){
 });
 
 target_token = ""
+const admin = require('firebase-admin')
+
+let serAccount = require('../capstone-f5130-firebase-adminsdk-pz2fr-b2582cb73c.json')
+
+admin.initializeApp({
+  credential: admin.credential.cert(serAccount),
+})
 
 // .on = 메시지를 받았을 때 동작 수행.
 // .emit = 메시지를 전송하는 동작 수행.
