@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
 		// 파이썬에서 받은 주차완료 신호를 앱으로 넘겨주고 푸시알람 보내기
 		io.emit('parking',obj["data"])
 		var spawn = require('child_process').spawn;
-		spawn('python', ['parking_fcm.py']);
+		spawn('python', ['./parking_fcm.py']);
 		console.log('push parking');
 	});
 
@@ -76,7 +76,7 @@ io.on('connection', (socket) => {
 		// 파이썬에서 받은 주차완료 신호를 앱으로 넘겨주고 푸시알람 보내기
 		io.emit('callback',obj["data"])
 		var spawn = require('child_process').spawn;
-		spawn('python', ['call_fcm.py']);
+		spawn('python', ['./call_fcm.py']);
 		console.log('push callback');
 	});
 
