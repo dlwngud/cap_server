@@ -68,22 +68,21 @@ io.on('connection', (socket) => {
 		spawn('python3', ['./parking_fcm.py']);
 		console.log('push parking');
 		let target_token =
-    'dbG-D7v8TziMTbLRbRZuUN:APA91bEXKPuMBm4nXYIH0u73O6-48s_D29ElCG7JVOhH_DT9ZHj_sM7wwwb-2VizOitfoVUGY87YvTAnixNVTZHTpZdQsLPNlePODuNB14FNg3qFtthJ6B-1Hoc9CfyBaQyWJwu3s2fW'
-	//target_token은 푸시 메시지를 받을 디바이스의 토큰값입니다
+			'dbG-D7v8TziMTbLRbRZuUN:APA91bEXKPuMBm4nXYIH0u73O6-48s_D29ElCG7JVOhH_DT9ZHj_sM7wwwb-2VizOitfoVUGY87YvTAnixNVTZHTpZdQsLPNlePODuNB14FNg3qFtthJ6B-1Hoc9CfyBaQyWJwu3s2fW'
+		//target_token은 푸시 메시지를 받을 디바이스의 토큰값입니다
 
-  let message = {
-    data: {
-      title: '테스트 데이터 발송',
-      body: '데이터가 잘 가나요?',
-      style: '굳굳',
-    },
-    token: target_token,
-  }
+		let message = {
+			data: {
+				title: '테스트 데이터 발송',
+				body: '데이터가 잘 가나요?',
+				style: '굳굳',
+			},
+			token: target_token,
+		}
 
-  admin
-    .messaging()
-    .send(message)
-	});
+		admin
+			.messaging()
+			.send(message)
 	});
 
 	// 파이썬에서 호출 신호를 받을 때
