@@ -20,7 +20,7 @@ target_token = ""
 
 const admin = require('firebase-admin')
 
-let serAccount = require('../capstone-f5130-firebase-adminsdk-pz2fr-b2582cb73c.json')
+let serAccount = require('./capstone-f5130-firebase-adminsdk-pz2fr-b2582cb73c.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serAccount),
