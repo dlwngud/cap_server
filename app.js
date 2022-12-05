@@ -74,16 +74,15 @@ io.on('connection', (socket) => {
 		var spawn = require('child_process').spawn;
 		spawn('python3', ['./parking_fcm.py']);
 		console.log('push parking');
-		router.get('/push', (req, res, next) => {
+		
 		let target_token =
 			'dbG-D7v8TziMTbLRbRZuUN:APA91bEXKPuMBm4nXYIH0u73O6-48s_D29ElCG7JVOhH_DT9ZHj_sM7wwwb-2VizOitfoVUGY87YvTAnixNVTZHTpZdQsLPNlePODuNB14FNg3qFtthJ6B-1Hoc9CfyBaQyWJwu3s2fW'
 		//target_token은 푸시 메시지를 받을 디바이스의 토큰값입니다
 
 		let message = {
-			data: {
+			notification: {
 				title: '테스트 데이터 발송',
 				body: '데이터가 잘 가나요?',
-				style: '굳굳',
 			},
 			token: target_token,
 		}
@@ -91,13 +90,12 @@ io.on('connection', (socket) => {
 		admin
 			.messaging()
 			.send(message)
-			.then(function (response) {
+			.then((response) => {
 				console.log('Successfully sent message: : ', response)
 			})
-			.catch(function (err) {
-				console.log('Error Sending message!!! : ', err)
-			})
-		  })
+			.catch((error) => {
+				console.log('Error Sending message!!! : ', error)
+			});
 	});
 
 	// 파이썬에서 호출 신호를 받을 때
