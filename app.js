@@ -17,9 +17,10 @@ app.get('/', function(req, res){
 });
 
 target_token = ""
+
 const admin = require('firebase-admin')
 
-let serAccount = require('./capstone-f5130-firebase-adminsdk-pz2fr-b2582cb73c.json')
+let serAccount = require('../capstone-f5130-firebase-adminsdk-pz2fr-b2582cb73c.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serAccount),
@@ -55,7 +56,7 @@ io.on('connection', (socket) => {
 
 		// 호출 신호를 파이썬으로 보내주기
 		io.emit('call', call);
-		
+
 	});
 
 
@@ -70,19 +71,19 @@ io.on('connection', (socket) => {
 		console.log(obj["data"]);
 
 		// 파이썬에서 받은 주차완료 신호를 앱으로 넘겨주고 푸시알람 보내기
-		io.emit('parking',obj["data"])
+		io.emit('parking', obj["data"])
 		var spawn = require('child_process').spawn;
-		spawn('python3', ['./parking_fcm.py']);
+		spawn('python', ['./parking_fcm.py']);
 		console.log('push parking');
-		
+
 		let target_token =
 			'dbG-D7v8TziMTbLRbRZuUN:APA91bEXKPuMBm4nXYIH0u73O6-48s_D29ElCG7JVOhH_DT9ZHj_sM7wwwb-2VizOitfoVUGY87YvTAnixNVTZHTpZdQsLPNlePODuNB14FNg3qFtthJ6B-1Hoc9CfyBaQyWJwu3s2fW'
 		//target_token은 푸시 메시지를 받을 디바이스의 토큰값입니다
 
 		let message = {
 			notification: {
-				title: '테스트 데이터 발송',
-				body: '데이터가 잘 가나요?',
+				title: '주차앱',
+				body: '주차를 완료하였습니다.',
 			},
 			token: target_token,
 		}
@@ -102,17 +103,40 @@ io.on('connection', (socket) => {
 	socket.on('callback', (obj) => {
 		console.log(obj["data"]);
 
-		// 파이썬에서 받은 주차완료 신호를 앱으로 넘겨주고 푸시알람 보내기
-		io.emit('callback',obj["data"])
+		// 파이썬에서 받은 호출완료 신호를 앱으로 넘겨주고 푸시알람 보내기
+		io.emit('callback', obj["data"])
 		var spawn = require('child_process').spawn;
-		spawn('python3', ['./call_fcm.py']);
+		spawn('python', ['./call_fcm.py']);
 		console.log('push callback');
+
+
+		let target_token =
+			'dbG-D7v8TziMTbLRbRZuUN:APA91bEXKPuMBm4nXYIH0u73O6-48s_D29ElCG7JVOhH_DT9ZHj_sM7wwwb-2VizOitfoVUGY87YvTAnixNVTZHTpZdQsLPNlePODuNB14FNg3qFtthJ6B-1Hoc9CfyBaQyWJwu3s2fW'
+		//target_token은 푸시 메시지를 받을 디바이스의 토큰값입니다
+
+		let message = {
+			notification: {
+				title: '주차앱',
+				body: '호출을 완료하였습니다.',
+			},
+			token: target_token,
+		}
+
+		admin
+			.messaging()
+			.send(message)
+			.then((response) => {
+				console.log('Successfully sent message: : ', response)
+			})
+			.catch((error) => {
+				console.log('Error Sending message!!! : ', error)
+			});
 	});
 
-	
+
 
 	// 클라이언트의 연결이 끊어졌을 때 호출
-	socket.on('disconnect', () => {    	
+	socket.on('disconnect', () => {
 		console.log('server disconnected');
 	});
 });
