@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
 		console.log('push parking');
 
 		let target_token =
-			'cDspaqPNTiCj76_iXLfch-:APA91bFoEcCPbYMnQG2AqvWcq-SvmY5mEB2UauD6g_OdmpAud_58SMfc0VTmWS9yXDIHUqFb7fE6LJ5koiGwjIuOiEkfogNFE90_p4G5oVV3tQhkupGFabuMWjSffdRYJrLlDNuAr-mY'
+			'fgOM2Td_S7KxBAT30xZ-9c:APA91bFJEkGJWqde9imhnK0bEh7EUN4IfBgfE99jy_N52_6S7pdjEvuAETEVnpV6TgEvsht1sZbmJ_FzkFZcNrTi2URXXlutgpFI6MLqAfqcuCuKOniTsm2I7EGZWx-sxqvYKuZv40mz'
 		//target_token은 푸시 메시지를 받을 디바이스의 토큰값입니다
 
 		let message = {
@@ -111,7 +111,7 @@ io.on('connection', (socket) => {
 
 
 		let target_token =
-			'cDspaqPNTiCj76_iXLfch-:APA91bFoEcCPbYMnQG2AqvWcq-SvmY5mEB2UauD6g_OdmpAud_58SMfc0VTmWS9yXDIHUqFb7fE6LJ5koiGwjIuOiEkfogNFE90_p4G5oVV3tQhkupGFabuMWjSffdRYJrLlDNuAr-mY'
+			'fgOM2Td_S7KxBAT30xZ-9c:APA91bFJEkGJWqde9imhnK0bEh7EUN4IfBgfE99jy_N52_6S7pdjEvuAETEVnpV6TgEvsht1sZbmJ_FzkFZcNrTi2URXXlutgpFI6MLqAfqcuCuKOniTsm2I7EGZWx-sxqvYKuZv40mz'
 		//target_token은 푸시 메시지를 받을 디바이스의 토큰값입니다
 
 		let message = {
